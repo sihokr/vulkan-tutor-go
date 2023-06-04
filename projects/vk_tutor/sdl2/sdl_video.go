@@ -112,51 +112,75 @@ type SDL_Window internal.CObjWrapper
 type SDL_WindowFlags uint32
 
 const (
-	//     SDL_WINDOW_FULLSCREEN = 0x00000001,         /**< fullscreen window */
-	//     SDL_WINDOW_OPENGL = 0x00000002,             /**< window usable with OpenGL context */
-	SDL_WINDOW_SHOWN SDL_WindowFlags = C.SDL_WINDOW_SHOWN /**< window is visible */
-	//     SDL_WINDOW_HIDDEN = 0x00000008,             /**< window is not visible */
-	//     SDL_WINDOW_BORDERLESS = 0x00000010,         /**< no window decoration */
-	//     SDL_WINDOW_RESIZABLE = 0x00000020,          /**< window can be resized */
-	//     SDL_WINDOW_MINIMIZED = 0x00000040,          /**< window is minimized */
-	//     SDL_WINDOW_MAXIMIZED = 0x00000080,          /**< window is maximized */
-	//     SDL_WINDOW_MOUSE_GRABBED = 0x00000100,      /**< window has grabbed mouse input */
-	//     SDL_WINDOW_INPUT_FOCUS = 0x00000200,        /**< window has input focus */
-	//     SDL_WINDOW_MOUSE_FOCUS = 0x00000400,        /**< window has mouse focus */
-	//     SDL_WINDOW_FULLSCREEN_DESKTOP = ( SDL_WINDOW_FULLSCREEN | 0x00001000 ),
-	//     SDL_WINDOW_FOREIGN = 0x00000800,            /**< window not created by SDL */
-	//     SDL_WINDOW_ALLOW_HIGHDPI = 0x00002000,      /**< window should be created in high-DPI mode if supported.
-	//                                                      On macOS NSHighResolutionCapable must be set true in the
-	//                                                      application's Info.plist for this to have any effect. */
-	//     SDL_WINDOW_MOUSE_CAPTURE    = 0x00004000,   /**< window has mouse captured (unrelated to MOUSE_GRABBED) */
-	//     SDL_WINDOW_ALWAYS_ON_TOP    = 0x00008000,   /**< window should always be above others */
-	//     SDL_WINDOW_SKIP_TASKBAR     = 0x00010000,   /**< window should not be added to the taskbar */
-	//     SDL_WINDOW_UTILITY          = 0x00020000,   /**< window should be treated as a utility window */
-	//     SDL_WINDOW_TOOLTIP          = 0x00040000,   /**< window should be treated as a tooltip */
-	//     SDL_WINDOW_POPUP_MENU       = 0x00080000,   /**< window should be treated as a popup menu */
-	//     SDL_WINDOW_KEYBOARD_GRABBED = 0x00100000,   /**< window has grabbed keyboard input */
-	SDL_WINDOW_VULKAN SDL_WindowFlags = C.SDL_WINDOW_VULKAN /**< window usable for Vulkan surface */
-	//     SDL_WINDOW_METAL            = 0x20000000,   /**< window usable for Metal view */
-	//     SDL_WINDOW_INPUT_GRABBED = SDL_WINDOW_MOUSE_GRABBED /**< equivalent to SDL_WINDOW_MOUSE_GRABBED for compatibility */
+	SDL_WINDOW_FULLSCREEN         SDL_WindowFlags = C.SDL_WINDOW_FULLSCREEN    /**< fullscreen window */
+	SDL_WINDOW_OPENGL             SDL_WindowFlags = C.SDL_WINDOW_OPENGL        /**< window usable with OpenGL context */
+	SDL_WINDOW_SHOWN              SDL_WindowFlags = C.SDL_WINDOW_SHOWN         /**< window is visible */
+	SDL_WINDOW_HIDDEN             SDL_WindowFlags = C.SDL_WINDOW_HIDDEN        /**< window is not visible */
+	SDL_WINDOW_BORDERLESS         SDL_WindowFlags = C.SDL_WINDOW_BORDERLESS    /**< no window decoration */
+	SDL_WINDOW_RESIZABLE          SDL_WindowFlags = C.SDL_WINDOW_RESIZABLE     /**< window can be resized */
+	SDL_WINDOW_MINIMIZED          SDL_WindowFlags = C.SDL_WINDOW_MINIMIZED     /**< window is minimized */
+	SDL_WINDOW_MAXIMIZED          SDL_WindowFlags = C.SDL_WINDOW_MAXIMIZED     /**< window is maximized */
+	SDL_WINDOW_MOUSE_GRABBED      SDL_WindowFlags = C.SDL_WINDOW_MOUSE_GRABBED /**< window has grabbed mouse input */
+	SDL_WINDOW_INPUT_FOCUS        SDL_WindowFlags = C.SDL_WINDOW_INPUT_FOCUS   /**< window has input focus */
+	SDL_WINDOW_MOUSE_FOCUS        SDL_WindowFlags = C.SDL_WINDOW_MOUSE_FOCUS   /**< window has mouse focus */
+	SDL_WINDOW_FULLSCREEN_DESKTOP SDL_WindowFlags = C.SDL_WINDOW_FULLSCREEN_DESKTOP
+	SDL_WINDOW_FOREIGN            SDL_WindowFlags = C.SDL_WINDOW_FOREIGN       /**< window not created by SDL */
+	SDL_WINDOW_ALLOW_HIGHDPI      SDL_WindowFlags = C.SDL_WINDOW_ALLOW_HIGHDPI /**< window should be created in high-DPI mode if supported.
+	  On macOS NSHighResolutionCapable must be set true in the
+	  application's Info.plist for this to have any effect. */
+	SDL_WINDOW_MOUSE_CAPTURE    SDL_WindowFlags = C.SDL_WINDOW_MOUSE_CAPTURE    /**< window has mouse captured (unrelated to MOUSE_GRABBED) */
+	SDL_WINDOW_ALWAYS_ON_TOP    SDL_WindowFlags = C.SDL_WINDOW_ALWAYS_ON_TOP    /**< window should always be above others */
+	SDL_WINDOW_SKIP_TASKBAR     SDL_WindowFlags = C.SDL_WINDOW_SKIP_TASKBAR     /**< window should not be added to the taskbar */
+	SDL_WINDOW_UTILITY          SDL_WindowFlags = C.SDL_WINDOW_UTILITY          /**< window should be treated as a utility window */
+	SDL_WINDOW_TOOLTIP          SDL_WindowFlags = C.SDL_WINDOW_TOOLTIP          /**< window should be treated as a tooltip */
+	SDL_WINDOW_POPUP_MENU       SDL_WindowFlags = C.SDL_WINDOW_POPUP_MENU       /**< window should be treated as a popup menu */
+	SDL_WINDOW_KEYBOARD_GRABBED SDL_WindowFlags = C.SDL_WINDOW_KEYBOARD_GRABBED /**< window has grabbed keyboard input */
+	SDL_WINDOW_VULKAN           SDL_WindowFlags = C.SDL_WINDOW_VULKAN           /**< window usable for Vulkan surface */
+	SDL_WINDOW_METAL            SDL_WindowFlags = C.SDL_WINDOW_METAL            /**< window usable for Metal view */
+	SDL_WINDOW_INPUT_GRABBED    SDL_WindowFlags = C.SDL_WINDOW_MOUSE_GRABBED    /**< equivalent to SDL_WINDOW_MOUSE_GRABBED for compatibility */
 )
 
-// /**
-//  *  \brief Used to indicate that you don't care what the window position is.
-//  */
+/**
+ *  \brief Used to indicate that you don't care what the window position is.
+ */
 // #define SDL_WINDOWPOS_UNDEFINED_MASK    0x1FFF0000u
 // #define SDL_WINDOWPOS_UNDEFINED_DISPLAY(X)  (SDL_WINDOWPOS_UNDEFINED_MASK|(X))
 // #define SDL_WINDOWPOS_UNDEFINED         SDL_WINDOWPOS_UNDEFINED_DISPLAY(0)
 // #define SDL_WINDOWPOS_ISUNDEFINED(X)    \
 //             (((X)&0xFFFF0000) == SDL_WINDOWPOS_UNDEFINED_MASK)
+const (
+	SDL_WINDOWPOS_UNDEFINED_MASK uint32 = C.SDL_WINDOWPOS_UNDEFINED_MASK
+	SDL_WINDOWPOS_UNDEFINED      int    = int(SDL_WINDOWPOS_UNDEFINED_MASK | 0)
+)
 
-// /**
-//  *  \brief Used to indicate that the window position should be centered.
-//  */
+func SDL_WINDOWPOS_UNDEFINED_DISPLAY(x int) int {
+	return int(SDL_WINDOWPOS_UNDEFINED_MASK | uint32(x))
+}
+
+func SDL_WINDOWPOS_ISUNDEFINED(x int) bool {
+	return uint32(x)&0xFFFF_0000 == SDL_WINDOWPOS_UNDEFINED_MASK
+}
+
+/**
+ *  \brief Used to indicate that the window position should be centered.
+ */
 // #define SDL_WINDOWPOS_CENTERED_MASK    0x2FFF0000u
 // #define SDL_WINDOWPOS_CENTERED_DISPLAY(X)  (SDL_WINDOWPOS_CENTERED_MASK|(X))
 // #define SDL_WINDOWPOS_CENTERED         SDL_WINDOWPOS_CENTERED_DISPLAY(0)
 // #define SDL_WINDOWPOS_ISCENTERED(X)    \
 //             (((X)&0xFFFF0000) == SDL_WINDOWPOS_CENTERED_MASK)
+const (
+	SDL_WINDOWPOS_CENTERED_MASK uint32 = C.SDL_WINDOWPOS_CENTERED_MASK
+	SDL_WINDOWPOS_CENTERED      int    = int(SDL_WINDOWPOS_CENTERED_MASK | 0)
+)
+
+func SDL_WINDOWPOS_CENTERED_DISPLAY(x int) int {
+	return int(SDL_WINDOWPOS_CENTERED_MASK | uint32(x))
+}
+
+func SDL_WINDOWPOS_ISCENTERED(x int) bool {
+	return uint32(x)&0xFFFF_0000 == SDL_WINDOWPOS_CENTERED_MASK
+}
 
 // /**
 //  *  \brief Event subtype for window events
